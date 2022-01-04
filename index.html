@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="https://vacunate.ms.gba.gov.ar/app/img/favicon.ico">
+
+    <title>VacunatePBA</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="./vac/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: "Encode Sans", sans-serif;
+        }
+        .footer {
+            background: #00b1c7;
+            border-top: none;
+            text-align: center;
+        }
+        .invalida {
+            color: #ee3e4f;
+        }
+        .dosis {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);;
+            font-weight: 600;
+            color: #fff;
+            background-color: #e81f76;
+            padding: .5rem;
+            border-radius: .35rem;
+        }
+        h5 {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            font-weight: normal;
+        }
+        h4 {
+            font-size: clamp(1.5rem, 2vw, 2rem);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .bg-ms {
+            background: #00b1c7;
+        }
+        .info {
+            background: #fafafa
+        }
+        .col-4, .col-8 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        @media only screen and (orientation: landscape) {
+            .col-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+            .col-8 {
+                flex: 0 0 66.666667%;
+                max-width: 66.666667%;
+            }
+            .info {
+                margin: 0;
+            }
+            .header {
+                background-size: cover;
+                height: 100%;
+                padding-top: 180%;
+                width: 100%;
+            }
+            .footer {
+                display: none;
+            }
+        }
+        @media only screen and (min-width: 1200px),
+        (orientation: portrait) {
+            .col-4, .col-8 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .header {
+                background-size: cover;
+                height: 0;
+                margin-bottom: .25rem;
+                padding-top: 45%;
+                width: 100%;
+            }
+            .footer {
+                display: block;
+            }
+            /*.info {*/
+            /*    margin: .5rem .25rem;*/
+            /*}*/
+        }
+    </style>
+    <script>
+        var urlParams;
+        
+        (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+            urlParams[decode(match[1])] = decode(match[2]);
+        })();
+
+        (function(window, document, undefined){
+        window.onload = init;
+
+        function init(){
+            document.getElementById("nom").innerText = urlParams.nom;
+            document.getElementById("doc").innerText = urlParams.doc;
+            switch (urlParams.cert) {
+            case "de8d49b78a85a322c4155015fdce22luc":
+                document.getElementById("da1").innerText = "25/07/2021";
+                document.getElementById("da2").innerText = "05/09/2021";
+                document.getElementById("do1").innerText = "SINOPHARM";
+                document.getElementById("do2").innerText = "SINOPHARM";
+                break;
+            case "a85a322c415501de8d49b785fdce22sa": 
+                document.getElementById("da1").innerText = "17/09/2021";
+                document.getElementById("da2").innerText = "21/10/2021";
+                document.getElementById("do1").innerText = "SPUTNIK V";
+                document.getElementById("do2").innerText = "SPUTNIK V";
+            break;
+            default: break;
+            }
+        }
+
+        })(window, document, undefined);
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid container-lg p-1">
+        <div class="d-flex justify-content-center">
+            <div class="card col-12 col-lg-8 p-0 bg-ms">
+                <div class="row no-gutters">
+                    <div class="col-4">
+                        <img src="./vac/img-h.png" style="width: 100%;"/>
+                        <img src="./vac/img-v.png" style="width: 100%;"/>
+                    </div>
+                    <div class="col-8 col-sm-8 info">
+                        <div class="card-body">
+                                <h5 class="text-dark">Nombre y apellido</h5>
+                                <h4 class="mb-4" id="nom"></h4>
+                                <h5 class="text-dark">Documento</h5>
+                                <h4 class="mt-2 mb-3" id="doc"></h4>
+                                <h5 class="dosis">
+                                    PRIMERA DOSIS
+                                </h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="p-1 mb-0">Vacuna</h5>
+                                        <h5 class="pl-1 mb-4 font-weight-bold" id="do1">Sputnik V</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="p-1 mb-0">Fecha</h5>
+                                        <h5 class="pl-1 mb-4 font-weight-bold" id="da1"></h5>
+                                    </div>
+                                </div>
+                                                            <h5 class="dosis">
+                                    SEGUNDA DOSIS
+                                </h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="p-1 mb-0">Vacuna</h5>
+                                        <h5 class="pl-1 mb-4 font-weight-bold" id="do2">Sputnik V</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="p-1 mb-0">Fecha</h5>
+                                        <h5 class="pl-1 mb-4 font-weight-bold" id="da2">/h5>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                </div>
+                <div class="card-footer footer">
+                    <img src="./vac/logo-ms.png" alt="logo-ministerio-ba" class="img-fluid" style="max-height:4.5rem">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>
